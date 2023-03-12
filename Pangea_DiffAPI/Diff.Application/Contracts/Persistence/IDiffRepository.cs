@@ -9,5 +9,7 @@ namespace Diff.Application.Contracts.Persistence
 {
     public interface IDiffRepository : IAsyncRepository<Difference>
     {
+        Task<Difference> GetDiff(int id, string way);
+
     }
 }

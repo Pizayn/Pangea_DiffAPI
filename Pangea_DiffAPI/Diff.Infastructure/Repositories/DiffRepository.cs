@@ -16,5 +16,12 @@ namespace Diff.Infrastructure.Repositories
         {
         }
 
+        public async Task<Difference> GetDiff(int id, string way)
+        {
+            var difference = await _dbContext.Differences
+                                    .Where(o => o.Id == id && o.Way == way)
+                                    .FirstOrDefaultAsync();
+            return difference;
+        }
     }
 }

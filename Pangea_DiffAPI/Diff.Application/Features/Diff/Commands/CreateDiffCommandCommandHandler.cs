@@ -28,6 +28,12 @@ namespace Diff.Application.Features.Diff.Commands
         public async Task<int> Handle(CreateDiffCommand request, CancellationToken cancellationToken)
         {
             var differenceEntity = _mapper.Map<Difference>(request);
+            var difference = await _diffRepository.GetDiff(request.Id, request.Way);
+
+            if(difference != null)
+            {
+                throw new Exception("Entity already created");
+            }
             var newDifference = await _diffRepository.AddAsync(differenceEntity);
 
             _logger.LogInformation($"Difference {newDifference.Id} is successfully created.");

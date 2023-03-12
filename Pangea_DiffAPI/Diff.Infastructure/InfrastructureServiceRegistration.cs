@@ -12,7 +12,7 @@ namespace Diff.Infrastructure
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<DiffContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DiffConnectionString")));
+                options.UseSqlServer(configuration.GetConnectionString("DifferenceConnectionString")));
 
             services.AddScoped(typeof(IAsyncRepository<>), typeof(RepositoryBase<>));
             services.AddScoped<IDiffRepository, DiffRepository>();

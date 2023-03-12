@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Diff.API.Extensions;
 
 namespace Diff.API
 {
@@ -19,6 +20,13 @@ namespace Diff.API
         {
             CreateHostBuilder(args)
                .Build()
+                .MigrateDatabase<DiffContext>((context, services) =>
+                {
+                    var logger = services.GetService<ILogger<DiffContextSeed>>();
+                    DiffContextSeed
+                        .SeedAsync(context, logger)
+                        .Wait();
+                })
                .Run();
         }
 

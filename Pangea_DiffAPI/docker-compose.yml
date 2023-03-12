@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+
+  differencedb:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+
+
+  diff.api:
+    image: ${DOCKER_REGISTRY-}diffapi
+    build:
+      context: .
+      dockerfile: Diff.API/Dockerfile

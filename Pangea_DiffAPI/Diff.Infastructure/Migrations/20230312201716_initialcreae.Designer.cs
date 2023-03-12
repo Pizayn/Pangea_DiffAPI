@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Diff.Infastructure.Migrations
 {
     [DbContext(typeof(DiffContext))]
-    [Migration("20230312143632_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230312201716_initialcreae")]
+    partial class initialcreae
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,7 +23,7 @@ namespace Diff.Infastructure.Migrations
 
             modelBuilder.Entity("Diff.Domain.Entities.Difference", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("Index")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -35,12 +35,8 @@ namespace Diff.Infastructure.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("LastModifiedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("LastModifiedDate")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
 
                     b.Property<string>("Text")
                         .IsRequired()
@@ -50,7 +46,7 @@ namespace Diff.Infastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Index");
 
                     b.ToTable("Differences");
                 });

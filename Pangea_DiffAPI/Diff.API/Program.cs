@@ -19,14 +19,7 @@ namespace Diff.API
         public static void Main(string[] args)
         {
             CreateHostBuilder(args)
-               .Build()
-                .MigrateDatabase<DiffContext>((context, services) =>
-                {
-                    var logger = services.GetService<ILogger<DiffContextSeed>>();
-                    DiffContextSeed
-                        .SeedAsync(context, logger)
-                        .Wait();
-                })
+               .Build()              
                .Run();
         }
 

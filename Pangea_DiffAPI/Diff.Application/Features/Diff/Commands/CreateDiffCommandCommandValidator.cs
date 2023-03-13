@@ -16,7 +16,8 @@ namespace Diff.Application.Features.Diff.Commands
                .NotNull();
 
             RuleFor(p => p.Id)
-               .NotEmpty().WithMessage("{Id} is required.");
+               .NotEmpty().WithMessage("{Id} is required.")
+               .GreaterThan(0).WithMessage("Id should be greater than 0");
 
             RuleFor(p => p.Way)
                 .NotEmpty().WithMessage("{Way} is required.");

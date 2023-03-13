@@ -11,7 +11,15 @@ namespace Diff.Application.Features.Diff.Commands
     {
         public CreateDiffCommandCommandValidator()
         {
-           
+            RuleFor(p => p.Text)
+               .NotEmpty().WithMessage("{Text} is required.")
+               .NotNull();
+
+            RuleFor(p => p.Id)
+               .NotEmpty().WithMessage("{Id} is required.");
+
+            RuleFor(p => p.Way)
+                .NotEmpty().WithMessage("{Way} is required.")
         }
     }
 }

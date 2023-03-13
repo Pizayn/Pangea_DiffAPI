@@ -1,4 +1,5 @@
 ﻿using Diff.Application.Features.Diff.Commands;
+using Diff.Application.Features.Diff.Queries;
 using Diff.Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +8,7 @@ using System.Net;
 namespace Diff.API.Controllers
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/v1/[controller]/diff/{id}")]
     public class DiffController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -19,7 +20,7 @@ namespace Diff.API.Controllers
             _logger = logger;
         }
 
-        [HttpPost("{id}/left")]
+        [HttpPost("left")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<ActionResult<int>> CreateLeftDiffCommandAsync(int id,[FromBody] CreateDiffVm input)
         {
@@ -29,7 +30,7 @@ namespace Diff.API.Controllers
                );           
             return Ok(result);
         }
-        [HttpPost("{id}/right")]
+        [HttpPost("right")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<ActionResult<int>> CreateRightDiffCommandAsync(int id, [FromBody] CreateDiffVm input)
         {
@@ -39,7 +40,21 @@ namespace Diff.API.Controllers
             );
             return Ok(result);
         }
-     
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<DiffVm>>> GetDiff(int id)
+        {
+            var query = new GetDiffQuery(id);
+            var result = await _mediator.Send(query);
+
+            if (result.Message == null)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return Ok(result);
+        }
+
     }
 
 }

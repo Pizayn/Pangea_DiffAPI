@@ -11,5 +11,7 @@ namespace Diff.Application.Contracts.Persistence
     {
         Task<Difference> GetDiff(int id, string way);
 
+        Task<List<Difference>> GetDiffById(int Id);
+
     }
 }

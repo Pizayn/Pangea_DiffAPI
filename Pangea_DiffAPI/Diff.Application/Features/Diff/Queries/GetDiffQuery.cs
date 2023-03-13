@@ -9,11 +9,11 @@ namespace Diff.Application.Features.Diff.Queries
 {
     public class GetDiffQuery : IRequest<DiffVm>
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
 
-        public GetDiffQuery(string id)
+        public GetDiffQuery(int id)
         {
-            Id = id ?? throw new ArgumentNullException(nameof(id));
+            Id = id;
         }
     }
 }

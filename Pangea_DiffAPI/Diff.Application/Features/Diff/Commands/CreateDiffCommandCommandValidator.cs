@@ -19,7 +19,7 @@ namespace Diff.Application.Features.Diff.Commands
                .NotEmpty().WithMessage("{Id} is required.");
 
             RuleFor(p => p.Way)
-                .NotEmpty().WithMessage("{Way} is required.")
+                .NotEmpty().WithMessage("{Way} is required.");
         }
     }
 }

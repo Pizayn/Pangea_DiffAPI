@@ -24,13 +24,6 @@ namespace Diff.Infrastructure.Repositories
                                     .FirstOrDefaultAsync();
             return difference;
         }
-
-        public async Task<List<Difference>> GetDiffById(int Id)
-        {
-            var diffList = await _dbContext.Differences
-                                    .Where(o => o.Id == Id)
-                                    .ToListAsync();
-            return diffList;
-        }
+   
     }
 }
